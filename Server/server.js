@@ -16,9 +16,14 @@ const connection = db.createConnection({
 });
 
 app.get('/all',(req,res)=>{
-    const queryParameter = req.query.type;
-    const q = "SELECT * FROM movies";
+    const q = `SELECT * FROM cafes;`;
+    console.log("SELECT *");
+    console.log("FROM cafes;");
     connection.query(q, (error, results)=>{
         res.send(results);
     })
+});
+
+app.listen(port, ()=>{
+    console.log("Hey guys we are officially LIVE !!!!");
 });
