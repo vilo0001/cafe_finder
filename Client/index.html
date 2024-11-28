@@ -6,11 +6,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input id="search-bar" type="text" placeholder="Søg efter café">
-    <button id="sort-price">Sortér efter pris</button>
-    <button id="sort-rating">Sortér efter rating</button>
-    <button id="sort-size">Sortér efter størrelse</button>
-
+    <div id="filter">
+        <input id="search-bar" type="text" placeholder="Search for café">
+        <button id="sort-rating">Sort by rating</button>
+        <label for="prices">Price</label>
+        <select name="prices" id="prices">
+            <option selected="selected" value="">Any</option>
+            <option value="cheap">Cheap</option>
+            <option value="average">Average</option>
+            <option value="expensive">Expensive</option>
+        </select>
+        <label for="sizes">Size</label>
+        <select name="sizes" id="sizes">
+            <option selected="selected" value="">Any</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <label for="wifi">WiFi</label>
+        <select name="wifi" id="wifi">
+            <option selected="selected" value="">Any</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
 
     <div id="cafes">
 
