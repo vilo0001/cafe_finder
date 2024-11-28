@@ -6,7 +6,7 @@ showAllCafes();
 
 function showAllCafes() {
     cafesDOM.innerHTML = "";
-    fetch("http://localhost:3000/all")
+    fetch("http://localhost:3000/cafes")
         .then(response => response.json())
         .then(data => {
             data.forEach(cafe => {
