@@ -65,6 +65,10 @@ function showFilteredCafes() {
             currentCafes = data;
             data.forEach(cafe => {
                 showCafe(cafe.name, cafe.address, cafe.city, cafe.rating, cafe.size, cafe.price_range, cafe.wifi);
+                // tilføj unikke byer til array.
+                if(!cities.includes(cafe.city)) {
+                    cities.push(cafe.city);
+                }
             });
         });
 }
