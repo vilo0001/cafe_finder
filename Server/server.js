@@ -51,6 +51,20 @@ app.get('/cafes',(req,res)=>{
     })
 });
 
+app.post('/cafes/new', (req,res) => {
+    //parametre man kan søge efter i URL'en
+    const json = req.body;
+
+    connection.connect(function(err) {
+        if (err) throw err;
+        const q = `INSERT INTO cafes(name, address, city, rating, size, price_range, wifi) VALUES("${json.name}","${json.address}","${json.city}",${json.rating},"${json.size}","${json.price_range}",${json.wifi})`;
+        connection.query(q, function (err, result) {
+            if (err) throw err;
+            res.send("1 record inserted");
+        });
+    });
+});
+
 
 // Start server. Skal være under end points.
 app.listen(port, ()=>{
