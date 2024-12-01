@@ -7,7 +7,6 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('client'));
 
 // Connect til database.
 const connection = db.createConnection({
@@ -51,6 +50,62 @@ app.get('/cafes',(req,res)=>{
     })
 });
 
+app.get('/users',(req,res)=>{
+    //parametre man kan søge efter i URL'en
+    const { id, username, password, display_name } = req.query
+    let q = `SELECT * FROM users WHERE 1=1`;
+
+    //array til parametre
+    const params = []
+
+    //objekt med de forskellige parametre
+    const filters = {
+        id,
+        username,
+        password,
+        display_name
+    }
+
+    //iterere over objektet hvis paremeteret er brugt og tilføjer til queryen
+    for (let key in filters) {
+        if (filters[key]) {
+            q += ` AND ${key} = ?`
+            params.push(filters[key])
+        }
+    }
+    connection.query(q, params, (error, results)=>{
+        res.send(results);
+    })
+});
+
+app.get('/favourites',(req,res)=>{
+    //parametre man kan søge efter i URL'en
+    const { user_id, cafe_id } = req.query
+
+    let q = `SELECT * FROM favourites WHERE 1=1`;
+
+    //array til parametre
+    const params = []
+
+    //objekt med de forskellige parametre
+    const filters = {
+        user_id,
+        cafe_id
+    }
+
+    //iterere over objektet hvis paremeteret er brugt og tilføjer til queryen
+    for (let key in filters) {
+        if (filters[key]) {
+            q += ` AND ${key} = ?`
+            params.push(filters[key])
+        }
+    }
+
+    connection.query(q, params, (error, results)=>{
+        res.send(results);
+    })
+});
+
 app.post('/cafes/new', (req,res) => {
     //parametre man kan søge efter i URL'en
     const json = req.body;
@@ -65,6 +120,19 @@ app.post('/cafes/new', (req,res) => {
     });
 });
 
+app.post('/users/new', (req,res) => {
+    //parametre man kan søge efter i URL'en
+    const json = req.body;
+
+    connection.connect(function(err) {
+        if (err) throw err;
+        const q = `INSERT INTO users(username, password, display_name) VALUES("${json.username}","${json.password}","${json.display_name}")`;
+        connection.query(q, function (err, result) {
+            if (err) throw err;
+            res.send("1 record inserted");
+        });
+    });
+});
 
 // Start server. Skal være under end points.
 app.listen(port, ()=>{
