@@ -1,16 +1,125 @@
-ul {
-    font-size: 0.9rem;
-    color: slategray;
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    background-color: #fefbf3;
+    color: #4a4a4a;
 }
 
-li:nth-child(1) {
-    list-style-type: none;
+/* Filter Section */
+#filter {
+    background-color: #ffe8cc;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid #d4a373;
 }
 
-li {
-    float: left;
-    margin-right: 30px;
+#filter input,
+#filter select,
+#filter button {
+    font-size: 16px;
+    padding: 10px 15px;
+    border: 2px solid #d4a373;
+    border-radius: 8px;
+    background-color: #fff8e7;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: #4a4a4a;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#filter button {
+    background-color: #d4a373;
+    color: white;
+    cursor: pointer;
+}
+
+#filter button:hover {
+    background-color: #b68157;
+    transform: scale(1.05);
+}
+
+#filter input:focus,
+#filter select:focus {
+    border-color: #b68157;
+}
+
+/* Cafes Section */
+#cafes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Café Card */
+#cafes > div {
+    background-color: #fff8e7;
+    padding: 20px;
+    border-radius: 12px;
+    width: 280px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+#cafes > div:hover {
+    transform: translateY(-8px);
+    border-color: #d4a373;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+}
+
+#cafes h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #d4a373;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+#cafes p {
+    margin: 0 0 15px;
+    font-size: 14px;
+    color: #6b6b6b;
+    text-align: center;
+}
+
+#cafes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #4a4a4a;
+}
+
+#cafes li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+#cafes li::before {
+    content: '☕';
+    margin-right: 10px;
+    color: #d4a373;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #filter {
+        flex-direction: column;
+    }
+
+    #cafes > div {
+        width: 90%;
+    }
 }
